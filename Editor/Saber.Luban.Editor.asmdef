@@ -1,7 +1,9 @@
 {
     "name": "Saber.Luban.Editor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:95934726fa9c2234caf585ff29261e84"
+    ],
     "includePlatforms": [
         "Editor"
     ],
