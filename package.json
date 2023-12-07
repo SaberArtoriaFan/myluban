@@ -10,5 +10,10 @@
     "name": "EdwardLee",
     "email": "17779647726@163.com",
     "url": "https://www.unity3d.com"
+  },
+ "repository": {
+    "url": "https://github.com/SaberArtoriaFan/myluban.git",
+    "type": "git",
+    "revision": "0.0.1"
   }
 }
