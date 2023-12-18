@@ -1,5 +1,3 @@
-using Codice.Utils;
-using System;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
@@ -41,7 +39,27 @@ public class LubanEditor
     //    //proc.WaitForExit();
 
     //}
-
+    [MenuItem("Luban/Path/OpenExcelDataDir")]
+    public static void OpenDataDir()
+    {
+       var config= LubanUnityEditor.LoadConfig();
+        if(Directory.Exists(config.LubanExcelDataPath))
+            Process.Start(config.LubanExcelDataPath);
+    }
+    [MenuItem("Luban/Path/OpenOutPutCodeDir")]
+    public static void OpenOutPutCodeDir()
+    {
+        var config = LubanUnityEditor.LoadConfig();
+        if (Directory.Exists(config.LubanOutputCodePath))
+            Process.Start(config.LubanOutputCodePath);
+    }
+    [MenuItem("Luban/Path/OpenOutPutDataDir")]
+    public static void OpenOutPutDataDir()
+    {
+        var config = LubanUnityEditor.LoadConfig();
+        if (Directory.Exists(config.LubanOutputDataPath))
+            Process.Start(config.LubanOutputDataPath);
+    }
     [MenuItem("Luban/InitLuban")]
     public static void InitLuban()
     {

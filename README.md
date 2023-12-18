@@ -17,6 +17,8 @@
 ```
 3.一键生成:点击Unity编辑器窗口 **Luban->BuildLuban** 按钮,即可自动根据 Luban(Assets同级目录)\Config\Datas\tables.xlsx 生成相应文件。
 
+![Image](https://github.com/SaberArtoriaFan/pictures/blob/main/20231207-185623.jpg)
+
 由于Unity网络问题，也可选择该gitee仓库[这是个仓库](https://gitee.com/Suzibuyi/my-luban)
 
 更多关于Luban信息，请自行到Luban官方库学习。本仓库只是一个简单的将Luban嵌入Unity编辑器。

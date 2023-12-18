@@ -62,7 +62,7 @@ public static class LubanUnityEditor
     public static void Run()
     {
         var config = LoadConfig();
-
+        if(config == null) return;
         //exe所在路径
         var path = config.LubanToolPath;
         var process = new Process();
@@ -107,7 +107,7 @@ public static class LubanUnityEditor
         process.WaitForExit();
     }
 
-    static LubanUnityConfig LoadConfig()
+   public  static LubanUnityConfig LoadConfig()
     {
         var path = Path.Combine(Application.dataPath, ConfigPath);
         path=Path.GetFullPath(path);
@@ -129,6 +129,7 @@ public static class LubanUnityEditor
         //检测各路径是否正确
         var type=config.GetType();
         var fields=type.GetFields(System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.Instance);
+        bool isError = false;
         foreach(var field in fields)
         {
             if (field.Name.StartsWith("Luban") == false) continue;
@@ -139,6 +140,7 @@ public static class LubanUnityEditor
                 {
                     if (!File.Exists(sv))
                     {
+                        isError = true;
                         Debug.LogError($"路径不存在-->{sv}");
                     }
                 }
@@ -149,12 +151,18 @@ public static class LubanUnityEditor
                         if (field.Name.Contains("Output"))
                             Directory.CreateDirectory(sv);
                         else
+                        {
+                            isError = true;
                             Debug.LogError($"路径不存在-->{sv}");
+                        }
                     }
                 }
             }
         }
         AssetDatabase.Refresh();
-        return config;
+        if(isError)
+            Debug.LogError($"程序存在错误!!!,请检查是否[Luban/InitLuban],并验证文件完整性");
+
+        return isError?null:config;
     }
 }
