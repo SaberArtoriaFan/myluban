@@ -9,39 +9,57 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/LubanUnityConfig")]
 public class LubanUnityConfig : ScriptableObject
 {
-    
 
-    [Header("Éú³É×ÊÁÏÎÄ¼şµÄÂ·¾¶")]
-    public string LubanOutputDataPath;
-    [Header("Éú³É´úÂëÎÄ¼şµÄÂ·¾¶")]
-    public string LubanOutputCodePath;
 
-    [Header("ÔËĞĞµÄexeÎÄ¼şÂ·¾¶")]
-    public string LubanToolPath;
-    [Header("´æ·ÅExcelÎÄ¼ş¼ĞµÄÂ·¾¶")]
-    public string LubanExcelDataPath;
-    [Header("ÅäÖÃ¶¨ÒåÎÄ¼şÂ·¾¶")]
-    public string LubanDefinesPath;
-    [Header("RootÅäÖÃÎÄ¼şÂ·¾¶")]
-    public string LubanConfPath;
-    [Header("¼ì²âExcelÊÇ·ñÕı³£µÄexe")]
-    public string LubanCheckPath;
+    [SerializeField,Header("ç”Ÿæˆèµ„æ–™æ–‡ä»¶çš„è·¯å¾„")]
+    string lubanOutputDataPath;
+    [SerializeField, Header("ç”Ÿæˆä»£ç æ–‡ä»¶çš„è·¯å¾„")]
+    string lubanOutputCodePath;
+
+    [SerializeField, Header("è¿è¡Œçš„exeæ–‡ä»¶è·¯å¾„")]
+    string lubanToolPath;
+    [SerializeField, Header("å­˜æ”¾Excelæ–‡ä»¶å¤¹çš„è·¯å¾„")]
+    string lubanExcelDataPath;
+    [SerializeField, Header("é…ç½®å®šä¹‰æ–‡ä»¶è·¯å¾„")]
+    string lubanDefinesPath;
+    [SerializeField, Header("Rooté…ç½®æ–‡ä»¶è·¯å¾„")]
+    string lubanConfPath;
+    [SerializeField, Header("æ£€æµ‹Excelæ˜¯å¦æ­£å¸¸çš„exe")]
+    string lubanCheckPath;
     [Space]
-    //¿ÉÒÔ²»¶¨ÒåµÄ
-    [Header("Â·¾¶¼ì²â¸ùÎÄ¼şÂ·¾¶")]
-    public string LubanPathValidatorRoot;
-    [Header("¶àÓïÑÔÎÄ¼şÅäÖÃÂ·¾¶")]
-    public string LubanL10nTextProvider;
+    //å¯ä»¥ä¸å®šä¹‰çš„
+    [SerializeField, Header("è·¯å¾„æ£€æµ‹æ ¹æ–‡ä»¶è·¯å¾„")]
+    string lubanPathValidatorRoot;
+    [SerializeField, Header("å¤šè¯­è¨€æ–‡ä»¶é…ç½®è·¯å¾„")]
+    string lubanL10nTextProvider;
 
+    public string LubanOutputDataPath { get => GetPath(lubanOutputDataPath); set => lubanOutputDataPath = value; }
+    public string LubanOutputCodePath { get => GetPath(lubanOutputCodePath); set => lubanOutputCodePath = value; }
+    public string LubanToolPath { get => GetPath(lubanToolPath); set => lubanToolPath = value; }
+    public string LubanExcelDataPath { get => GetPath(lubanExcelDataPath); set => lubanExcelDataPath = value; }
+    public string LubanDefinesPath { get => GetPath(lubanDefinesPath); set => lubanDefinesPath = value; }
+    public string LubanConfPath { get => GetPath(lubanConfPath); set => lubanConfPath = value; }
+    public string LubanCheckPath { get => GetPath(lubanCheckPath); set => lubanCheckPath = value; }
+    public string LubanPathValidatorRoot { get => GetPath(lubanPathValidatorRoot); set => lubanPathValidatorRoot = value; }
+    public string LubanL10nTextProvider { get => GetPath(lubanL10nTextProvider); set => lubanL10nTextProvider = value; }
+
+    string GetPath(string path)
+    {
+        return Path.Combine(LubanUtil.ApplicationPath, path);
+    }
     public void Init(string rootPath)
     {
         rootPath = Path.GetFullPath(rootPath);
         var unityRootPath=Path.GetFullPath(Application.dataPath);
+
+        rootPath = rootPath.Replace(unityRootPath, "");
+        unityRootPath = "";
+
         LubanToolPath = Path.Combine(rootPath, "Tools", "Luban", "Luban.exe");
         LubanExcelDataPath = Path.Combine(rootPath, "Config", "Datas");
         LubanDefinesPath = Path.Combine(rootPath, "Config", "Defines");
         LubanConfPath = Path.Combine(rootPath, "Config", "luban.conf");
-        //Õâ¸öÖ®ºóÒ²¿ÉÒÔÄÚÇ¶
+        //è¿™ä¸ªä¹‹åä¹Ÿå¯ä»¥å†…åµŒ
         LubanCheckPath = Path.Combine(rootPath, "Config", "gen.bat");
 
         LubanOutputDataPath = Path.Combine(unityRootPath, "OutPutData");

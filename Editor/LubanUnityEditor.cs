@@ -38,9 +38,11 @@ public class OutPutRecord
 public static class LubanUnityEditor 
 {
     #region 常量定义，请直接修改
-    public const string WindowBtn = "Luban/BuildData";
+    public const string WindowBtn = "Tools/Luban/BuildData";
     public const string ConfigPath = "LubanConfig.asset";
-    public static string LubanRootPath =>Path.GetFullPath(Path.Combine(Application.dataPath.Remove(Application.dataPath.Length - ("/Assets").Length),"Luban"));
+
+    public static string ApplicationPath = Path.GetFullPath(Application.dataPath.Remove(Application.dataPath.Length - ("/Assets").Length));
+    public static string LubanRootPath =Path.GetFullPath(Path.Combine(Application.dataPath.Remove(Application.dataPath.Length - ("/Assets").Length),"Luban"));
     #endregion
 
     public const string PATH_LubanConf = "";
@@ -58,7 +60,7 @@ public static class LubanUnityEditor
 
     }
 
-    [MenuItem(WindowBtn)]
+    [MenuItem(WindowBtn, false, 1)]
     public static void Run()
     {
         var config = LoadConfig();
@@ -107,7 +109,7 @@ public static class LubanUnityEditor
         process.WaitForExit();
     }
 
-   public  static LubanUnityConfig LoadConfig()
+    public  static LubanUnityConfig LoadConfig()
     {
         var path = Path.Combine(Application.dataPath, ConfigPath);
         path=Path.GetFullPath(path);

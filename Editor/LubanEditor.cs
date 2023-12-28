@@ -8,6 +8,7 @@ using Debug = UnityEngine.Debug;
 #endregion
 public class LubanEditor 
 {
+    public static string LubanInit = "Luban_Init";
     //[MenuItem("Luban/BuildLuban")]
     //public static void LoadLuban()
     //{
@@ -39,28 +40,28 @@ public class LubanEditor
     //    //proc.WaitForExit();
 
     //}
-    [MenuItem("Luban/Path/OpenExcelDataDir")]
+    [MenuItem("Tools/Luban/Path/OpenExcelDataDir",false,20)]
     public static void OpenDataDir()
     {
        var config= LubanUnityEditor.LoadConfig();
         if(Directory.Exists(config.LubanExcelDataPath))
             Process.Start(config.LubanExcelDataPath);
     }
-    [MenuItem("Luban/Path/OpenOutPutCodeDir")]
+    [MenuItem("Tools/Luban/Path/OpenOutPutCodeDir",false,22)]
     public static void OpenOutPutCodeDir()
     {
         var config = LubanUnityEditor.LoadConfig();
         if (Directory.Exists(config.LubanOutputCodePath))
             Process.Start(config.LubanOutputCodePath);
     }
-    [MenuItem("Luban/Path/OpenOutPutDataDir")]
+    [MenuItem("Tools/Luban/Path/OpenOutPutDataDir",false,21)]
     public static void OpenOutPutDataDir()
     {
         var config = LubanUnityEditor.LoadConfig();
         if (Directory.Exists(config.LubanOutputDataPath))
             Process.Start(config.LubanOutputDataPath);
     }
-    [MenuItem("Luban/InitLuban")]
+    [MenuItem("Tools/Luban/InitLuban",false,0)]
     public static void InitLuban()
     {
         string path = "Packages/com.saber.luban";
@@ -88,8 +89,32 @@ public class LubanEditor
             //try { File.Copy(file, newPath, true); }
             //catch (Exception ex) { Debug.LogError(ex); }
         }
+        EditorPrefs.SetBool(LubanInit, true);
        // Debug.Log($"导入{Path.GetFileName(copyToProtocolName)}完成!");
         //AssetDatabase.Refresh();
+    }
+    [InitializeOnLoadMethod]
+    public static void FlagToInit()
+    {
+        if (EditorPrefs.GetBool(LubanInit, false) == true) return;
+        bool isInit = false;
+        var config=LubanUnityEditor.LoadConfig();
+
+        if (config != null)
+        {
+            var toolPath =  config.LubanToolPath;
+            if (File.Exists(toolPath))
+                isInit = true;
+
+        }
+        if (isInit == false)
+        {
+            if (EditorUtility.DisplayDialog("欢迎使用MyLuban", "检测到未初始化,Luban工作路径不存在,请初始化!","好的"))
+            {
+                InitLuban();
+            }
+        }
+
     }
     static void CopyFilesAndDirs(string srcDir, string destDir)
     {
