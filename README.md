@@ -11,13 +11,29 @@
 
 2.自动化部署：点击Unity编辑器窗口 **Luban->InitLuban** 按钮,即可简单配置。
 ```
-  **待完善**:Luban生成的CS脚本和Json文件路径可配置（目前固定）
-    脚本路径->Assets\LubanLib
-    Json文件路径->Assets\Resources
+优点：
+
+    1.Luban生成的CS脚本和Json文件路径以及Excel等资源文件路径可配置（比.bat文件的折磨好多了）
+
+    2.操作简单化,一键生成，重要参数暴露，降低新人学习成本。
+
+    3.便于导入，集成于Package包，一键导入。
+    
 ```
-3.一键生成:点击Unity编辑器窗口 **Luban->BuildLuban** 按钮,即可自动根据 Luban(Assets同级目录)\Config\Datas\tables.xlsx 生成相应文件。
+3.一键生成:点击Unity编辑器窗口 **Luban->BuildLuban** 按钮,即可自动根据 Luban(Assets同级目录)\Config\Datas\tables.xlsx（默认配置可修改） 生成相应文件。
 
 ![Image](https://github.com/SaberArtoriaFan/pictures/blob/main/20231207-185623.jpg)
+
+**更新日志**
+
+2024/01/02：
+
+    1.Menu按钮快速打开目标文件夹。
+    
+    2.暴露出主要参数（未来预计全部暴露）
+
+    3.运行完毕后在Console界面打印日志，以及弹出Window显示日志
+
 
 由于Unity网络问题，也可选择该gitee仓库[这是个仓库](https://gitee.com/Suzibuyi/my-luban)
 
