@@ -34,6 +34,7 @@
 
     3.运行完毕后在Console界面打印日志，以及弹出Window显示日志
 
+![Image](https://github.com/SaberArtoriaFan/pictures/blob/main/20240102-184330.jpg)
 
 由于Unity网络问题，也可选择该gitee仓库[这是个仓库](https://gitee.com/Suzibuyi/my-luban)
 
