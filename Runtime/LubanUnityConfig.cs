@@ -33,8 +33,8 @@ public class LubanUnityConfig : ScriptableObject
     [SerializeField, Header("多语言文件配置路径")]
     string lubanL10nTextProvider;
 
-    public string LubanOutputDataPath { get => GetPath(lubanOutputDataPath); set => lubanOutputDataPath = value; }
-    public string LubanOutputCodePath { get => GetPath(lubanOutputCodePath); set => lubanOutputCodePath = value; }
+    public string LubanOutputDataPath { get => GetPath(lubanOutputDataPath,true); set => lubanOutputDataPath = value; }
+    public string LubanOutputCodePath { get => GetPath(lubanOutputCodePath,true); set => lubanOutputCodePath = value; }
     public string LubanToolPath { get => GetPath(lubanToolPath); set => lubanToolPath = value; }
     public string LubanExcelDataPath { get => GetPath(lubanExcelDataPath); set => lubanExcelDataPath = value; }
     public string LubanDefinesPath { get => GetPath(lubanDefinesPath); set => lubanDefinesPath = value; }
@@ -43,14 +43,15 @@ public class LubanUnityConfig : ScriptableObject
     public string LubanPathValidatorRoot { get => GetPath(lubanPathValidatorRoot); set => lubanPathValidatorRoot = value; }
     public string LubanL10nTextProvider { get => GetPath(lubanL10nTextProvider); set => lubanL10nTextProvider = value; }
 
-    string GetPath(string path)
+    string GetPath(string path,bool isAssets=false)
     {
-        return Path.Combine(LubanUtil.ApplicationPath, path);
+        if (string.IsNullOrEmpty(path)) return path;
+        return Path.GetFullPath(Path.Combine(LubanUtil.ApplicationPath, isAssets ? "Assets" : "", path));
     }
     public void Init(string rootPath)
     {
         rootPath = Path.GetFullPath(rootPath);
-        var unityRootPath=Path.GetFullPath(Application.dataPath);
+        var unityRootPath=Path.GetFullPath(Application.dataPath.Substring(0,Application.dataPath.Length-("Assets").Length));
 
         rootPath = rootPath.Replace(unityRootPath, "");
         unityRootPath = "";
