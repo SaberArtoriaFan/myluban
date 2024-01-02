@@ -42,4 +42,4 @@
 
 由于Unity网络问题，也可选择该gitee仓库[这是个仓库](https://gitee.com/Suzibuyi/my-luban)
 
-更多关于Luban信息，请自行到Luban官方库学习。本仓库只是一个简单的将Luban嵌入Unity编辑器。
+更多关于Luban信息，请自行到[Luban官方](https://github.com/focus-creative-games/luban)学习。本仓库只是一个简单的将Luban嵌入Unity编辑器。
