@@ -2,9 +2,12 @@
 <h1 align="center">
     MyLuban
 </h1> 
+
 <p align="center">基于Luban-Unity,主要完成了Luban工具的UnityPackage化.
   
 <p align="center">完善中。。。
+
+[![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT) ![star](https://img.shields.io/github/stars/SaberArtoriaFan/myluban?style=flat-square)
 
 **主要作用**
 
