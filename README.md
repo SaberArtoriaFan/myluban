@@ -1,3 +1,4 @@
++
 <h1 align="center">
     MyLuban
 </h1> 
@@ -10,6 +11,7 @@
 1.方便Unity导入：打开Unity编辑器->PackageManager->Add package from git URL，填入本仓库URL即可；也可下载到本地添加。
 
 2.自动化部署：点击Unity编辑器窗口 **Luban->InitLuban** 按钮,即可简单配置。
+
 ```
 优点：
 
@@ -21,6 +23,8 @@
     
 ```
 3.一键生成:点击Unity编辑器窗口 **Luban->BuildLuban** 按钮,即可自动根据 Luban(Assets同级目录)\Config\Datas\tables.xlsx（默认配置可修改） 生成相应文件。
+
+![Image](https://github.com/SaberArtoriaFan/pictures/blob/main/20240102-184747.jpg)
 
 ![Image](https://github.com/SaberArtoriaFan/pictures/blob/main/20231207-185623.jpg)
 
