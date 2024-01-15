@@ -3,7 +3,7 @@ using UnityEngine;
 #region
 //作者:Saber
 #endregion
-namespace Saber.Base
+namespace Saber.Luban
 {
 
     [AttributeUsage(AttributeTargets.Class)]

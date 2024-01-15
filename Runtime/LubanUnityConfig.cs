@@ -7,7 +7,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "ScriptableObjects/LubanUnityConfig")]
-public class LubanUnityConfig : SOSingleton<LubanUnityConfig>
+public class LubanUnityConfig : Saber.Luban.SOSingleton<LubanUnityConfig>
 {
 
 

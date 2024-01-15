@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using TEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 #region
 //作者:Saber
 #endregion
-namespace Saber.Base
+namespace Saber.Luban
 {
     public class SOSingleton<T> : ScriptableObject where T:SOSingleton<T>,new ()
     {
@@ -63,7 +62,7 @@ namespace Saber.Base
         public static void InitRuntime()
         {
             var path = GetSavePath(true);
-            instance = GameModule.Resource.LoadAsset<T>(path, false, true);
+            instance = Resources.Load<T>(path);
         }
 
         public void Save()
