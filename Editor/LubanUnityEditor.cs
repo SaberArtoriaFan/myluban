@@ -104,8 +104,9 @@ public static class LubanUnityEditor
     public const string BuildLightBtn = "Tools/Luban/BuildData/Build_Light";
     public const string ConfigPath = "LubanConfig.asset";
 
-    public static string ApplicationPath = Path.GetFullPath(Application.dataPath.Remove(Application.dataPath.Length - ("/Assets").Length));
-    public static string LubanRootPath =Path.GetFullPath(Path.Combine(Application.dataPath.Remove(Application.dataPath.Length - ("/Assets").Length),"Luban"));
+    public static string ApplicationPath =  Directory.GetParent(Application.dataPath).FullName;
+
+    public static string LubanRootPath =Path.Combine(ApplicationPath, "Luban");
     #endregion
 
     public const string PATH_LubanConf = "";
@@ -192,7 +193,7 @@ public static class LubanUnityEditor
             {
                 AssetDatabase.Refresh();
                 outPutRecord.Show();
-                outPutRecord.Close();
+                //outPutRecord.Close();
             };
         }
         else
@@ -207,7 +208,7 @@ public static class LubanUnityEditor
         process.WaitForExit();
 
     }
-    public  static LubanUnityConfig LoadConfig()
+    public static LubanUnityConfig LoadConfig()
     {
         var path = Path.Combine(Application.dataPath, ConfigPath);
         path=Path.GetFullPath(path);
@@ -221,7 +222,7 @@ public static class LubanUnityEditor
             Debug.Log($"未检测到配置文件{path},已自动生成");
            
             config = LubanUnityConfig.CreateInstance<LubanUnityConfig>();
-            config.Init(LubanRootPath);
+            config.Init(Path.GetFileName(LubanRootPath));
             AssetDatabase.CreateAsset(config, Path.Combine("Assets", ConfigPath));
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

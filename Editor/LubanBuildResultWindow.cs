@@ -6,6 +6,8 @@ namespace Luban
     public class LubanBuildResultWindow : EditorWindow
     {
         OutPutRecord outPutRecord;
+        private Vector2 scrollPosition;
+
         public LubanBuildResultWindow()
         {
             position = new Rect(this.position.xMin, position.yMin,1200, 500);
@@ -18,8 +20,9 @@ namespace Luban
         }
         private void OnGUI()
         {
-            var heigh = 20;
+            //var heigh = 20;
             if (outPutRecord == null) return;
+            GUILayout.BeginScrollView(scrollPosition);
             GUILayout.BeginVertical();
 
             //»æÖÆ±êÌâ
@@ -29,7 +32,7 @@ namespace Luban
             GUILayout.Label("Luban Build Result");
             GUI.skin.label.fontSize = 14;
             GUILayout.Space(10);
-            heigh += 24;
+            //heigh += 24;
             //GUILayout.Label(System.DateTime.Now.);
             GUI.skin.label.alignment = TextAnchor.MiddleLeft;
             foreach (var outPutRecord in outPutRecord.list)
@@ -40,20 +43,21 @@ namespace Luban
                     GUI.color = Color.white;
                 GUILayout.Label($" {outPutRecord.Item2}");
                 GUILayout.Space(5);
-                heigh += 10;
+               // heigh += 10;
             }
 
-            if (heigh > position.height)
-            {
-                //Debug.Log(heigh+""+position.height);
-                position = new Rect(this.position.xMin, position.yMin, position.width, heigh);
+            //if (heigh > position.height)
+            //{
+            //    //Debug.Log(heigh+""+position.height);
+            //    position = new Rect(this.position.xMin, position.yMin, position.width, heigh);
 
-            }
+            //}
             GUI.color = Color.white;
 
 
 
             GUILayout.EndVertical();
+            GUILayout.EndScrollView();
 
         }
     }

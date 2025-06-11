@@ -8,6 +8,6 @@ using UnityEngine;
 public static class LubanUtil 
 {
 
-    public static string ApplicationPath = Path.GetFullPath(Application.dataPath.Remove(Application.dataPath.Length - ("/Assets").Length));
+    public static string ApplicationPath = Directory.GetParent(Application.dataPath).FullName;
 
 }

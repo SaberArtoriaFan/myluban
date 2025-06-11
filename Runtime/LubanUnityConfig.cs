@@ -32,8 +32,8 @@ public class LubanUnityConfig : Saber.Luban.SOSingleton<LubanUnityConfig>
     [SerializeField, Header("多语言文件配置路径")]
     string lubanL10nTextProvider;
 
-    public string LubanOutputDataPath { get => GetPath(lubanOutputDataPath,true); set => lubanOutputDataPath = value; }
-    public string LubanOutputCodePath { get => GetPath(lubanOutputCodePath,true); set => lubanOutputCodePath = value; }
+    public string LubanOutputDataPath { get => GetPath(lubanOutputDataPath); set => lubanOutputDataPath = value; }
+    public string LubanOutputCodePath { get => GetPath(lubanOutputCodePath); set => lubanOutputCodePath = value; }
     public string LubanToolPath { get => GetPath(lubanToolPath); set => lubanToolPath = value; }
     public string LubanExcelDataPath { get => GetPath(lubanExcelDataPath); set => lubanExcelDataPath = value; }
     public string LubanDefinesPath { get => GetPath(lubanDefinesPath); set => lubanDefinesPath = value; }
@@ -49,10 +49,10 @@ public class LubanUnityConfig : Saber.Luban.SOSingleton<LubanUnityConfig>
     }
     public void Init(string rootPath)
     {
-        rootPath = Path.GetFullPath(rootPath);
-        var unityRootPath=Path.GetFullPath(Application.dataPath.Substring(0,Application.dataPath.Length-("Assets").Length));
+       // rootPath = Path.GetFullPath(rootPath);
+        var unityRootPath = LubanUtil.ApplicationPath;
 
-        rootPath = rootPath.Replace(unityRootPath, "");
+        //rootPath = rootPath.Replace(unityRootPath, "");
         unityRootPath = "";
 
         LubanToolPath = Path.Combine(rootPath, "Tools", "Luban", "Luban.exe");
@@ -62,7 +62,7 @@ public class LubanUnityConfig : Saber.Luban.SOSingleton<LubanUnityConfig>
         //这个之后也可以内嵌
         LubanCheckPath = Path.Combine(rootPath, "Config", "gen.bat");
 
-        LubanOutputDataPath = Path.Combine(unityRootPath, "OutPutData");
-        LubanOutputCodePath = Path.Combine(unityRootPath, "OutPutCode");
+        LubanOutputDataPath = Path.Combine(unityRootPath, "Assets","OutPutData");
+        LubanOutputCodePath = Path.Combine(unityRootPath, "Assets", "OutPutCode");
     }
 }
